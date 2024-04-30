@@ -26,7 +26,7 @@ const availableCategories = [
 ];
 
 // Dummay time lists picker
-const dummyTimeList = [
+var dummyTimeList = [
   TimesList(
     id: 't1',
     categoryId: ['c1'],

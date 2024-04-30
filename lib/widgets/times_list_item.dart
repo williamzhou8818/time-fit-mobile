@@ -3,8 +3,11 @@ import 'package:time_fit_mobile/models/times_lists.dart';
 import 'package:time_fit_mobile/widgets/update_time_list.dart';
 
 class TimesListItem extends StatefulWidget {
-  const TimesListItem({super.key, required this.timeList});
+  const TimesListItem(
+      {super.key, required this.timeList, required this.updateTimesListItem});
   final TimesList timeList;
+
+  final void Function(TimesList timesList) updateTimesListItem;
 
   @override
   State<TimesListItem> createState() {
@@ -14,11 +17,15 @@ class TimesListItem extends StatefulWidget {
 
 class _TimesListItemState extends State<TimesListItem> {
   void _openSelectTimeOverlay() {
+    print(widget.timeList.timeRange);
     // ...
     showModalBottomSheet(
         context: context,
         builder: (ctx) {
-          return const UpdateTimeList();
+          return UpdateTimeList(
+            timeList: widget.timeList,
+            updateTimesListItem: widget.updateTimesListItem,
+          );
         });
   }
 

@@ -1,5 +1,5 @@
 class TimesList {
-  const TimesList({
+  TimesList({
     required this.id,
     required this.categoryId,
     required this.sex,
@@ -10,8 +10,8 @@ class TimesList {
 
   final String id; // for mations
   final List<String> categoryId;
-  final String sex;
-  final String lockerId;
+  late String sex;
+  late String lockerId;
   final String timeRange;
   final String isOccupied;
 }

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:time_fit_mobile/models/times_lists.dart';
 
 enum SEX { M, F }
 
 class UpdateTimeList extends StatefulWidget {
-  const UpdateTimeList({super.key});
+  const UpdateTimeList(
+      {super.key, required this.timeList, required this.updateTimesListItem});
+  final TimesList timeList;
+  final void Function(TimesList timesList) updateTimesListItem;
+
   @override
   State<UpdateTimeList> createState() {
     return _UpdateTimeListState();
@@ -66,6 +71,13 @@ class _UpdateTimeListState extends State<UpdateTimeList> {
                 onPressed: () {
                   print(_lockerIdController.text);
                   print(dropdownValue);
+                  widget.updateTimesListItem(TimesList(
+                      id: widget.timeList.id,
+                      categoryId: widget.timeList.categoryId,
+                      sex: dropdownValue,
+                      lockerId: _lockerIdController.text,
+                      timeRange: widget.timeList.timeRange,
+                      isOccupied: 'false'));
                 },
                 child: const Text('確認'),
               ),
