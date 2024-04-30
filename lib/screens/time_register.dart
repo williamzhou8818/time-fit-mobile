@@ -35,6 +35,10 @@ class _TimeRegisterScreenState extends State<TimeRegisterScreen> {
       _timeListsState[
               _timeListsState.indexWhere((ele) => ele.id == timesList.id)]
           .lockerId = timesList.lockerId;
+
+      _timeListsState[
+              _timeListsState.indexWhere((ele) => ele.id == timesList.id)]
+          .isOccupied = timesList.isOccupied;
     });
   }
 

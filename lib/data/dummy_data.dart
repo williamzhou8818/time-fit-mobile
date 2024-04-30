@@ -38,10 +38,10 @@ var dummyTimeList = [
   TimesList(
     id: 't2',
     categoryId: ['c1'],
-    sex: '',
-    lockerId: '',
+    sex: 'F',
+    lockerId: '222',
     timeRange: '9:30 - 10:00',
-    isOccupied: 'true',
+    isOccupied: 'false',
   ),
   TimesList(
     id: 't3',

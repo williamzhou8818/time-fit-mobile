@@ -37,47 +37,73 @@ class _TimesListItemState extends State<TimesListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        onTap: _openSelectTimeOverlay,
-        child: Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(18),
-              child: Text(
-                widget.timeList.timeRange,
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                softWrap: true,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Row(
+    return Column(
+      children: [
+        Card(
+          margin: const EdgeInsets.all(8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          clipBehavior: Clip.hardEdge,
+          child: InkWell(
+            onTap: widget.timeList.isOccupied == 'true'
+                ? _openSelectTimeOverlay
+                : () {},
+            child: Stack(
               children: [
-                const SizedBox(width: 16),
-                Text(
-                  widget.timeList.sex + widget.timeList.lockerId,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white),
-                ),
+                if (widget.timeList.isOccupied == 'false')
+                  Container(
+                    padding: const EdgeInsets.all(18),
+                    width: double.infinity,
+                    color: Color.fromARGB(255, 230, 15, 176),
+                    child: Text(
+                      widget.timeList.timeRange,
+                      maxLines: 2,
+                      textAlign: TextAlign.left,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                if (widget.timeList.isOccupied == 'true')
+                  Container(
+                    padding: const EdgeInsets.all(18),
+                    width: double.infinity,
+                    color: Color.fromARGB(255, 0, 255, 200),
+                    child: Text(
+                      widget.timeList.timeRange,
+                      maxLines: 2,
+                      textAlign: TextAlign.left,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    const SizedBox(width: 16),
+                    Text(
+                      widget.timeList.sex + widget.timeList.lockerId,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

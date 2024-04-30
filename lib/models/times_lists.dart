@@ -13,5 +13,5 @@ class TimesList {
   late String sex;
   late String lockerId;
   final String timeRange;
-  final String isOccupied;
+  late String isOccupied;
 }

@@ -50,11 +50,15 @@ class _UpdateTimeListState extends State<UpdateTimeList> {
                 dropdownValue = value!;
               });
             },
+            style: const TextStyle(color: Colors.white, fontSize: 20),
+            underline: Container(), //remove underline
+            isExpanded: true, //make true to make width 100%
           ),
           TextField(
             controller: _lockerIdController,
             keyboardType: TextInputType.number,
             maxLength: 50,
+            style: const TextStyle(color: Colors.white, fontSize: 20),
             decoration: const InputDecoration(
               label: Text('ロッカー番号'),
             ),
@@ -69,15 +73,38 @@ class _UpdateTimeListState extends State<UpdateTimeList> {
               ),
               ElevatedButton(
                 onPressed: () {
+                  final enteredNum = double.tryParse(_lockerIdController.text);
+                  final lockerIDIsInvalid = enteredNum == null;
+
+                  if (lockerIDIsInvalid) {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: const Text('入力内容が間違い'),
+                        content: const Text(''),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(ctx);
+                              },
+                              child: const Text('確認'))
+                        ],
+                      ),
+                    );
+                    return;
+                  }
                   print(_lockerIdController.text);
                   print(dropdownValue);
-                  widget.updateTimesListItem(TimesList(
-                      id: widget.timeList.id,
-                      categoryId: widget.timeList.categoryId,
-                      sex: dropdownValue,
-                      lockerId: _lockerIdController.text,
-                      timeRange: widget.timeList.timeRange,
-                      isOccupied: 'false'));
+                  widget.updateTimesListItem(
+                    TimesList(
+                        id: widget.timeList.id,
+                        categoryId: widget.timeList.categoryId,
+                        sex: dropdownValue,
+                        lockerId: _lockerIdController.text,
+                        timeRange: widget.timeList.timeRange,
+                        isOccupied: 'false'),
+                  );
+                  Navigator.pop(context);
                 },
                 child: const Text('確認'),
               ),
