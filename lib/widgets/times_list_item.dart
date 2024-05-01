@@ -55,7 +55,7 @@ class _TimesListItemState extends State<TimesListItem> {
                   Container(
                     padding: const EdgeInsets.all(18),
                     width: double.infinity,
-                    color: Color.fromARGB(255, 230, 15, 176),
+                    color: Color.fromARGB(255, 184, 8, 52),
                     child: Text(
                       widget.timeList.timeRange,
                       maxLines: 2,
@@ -72,7 +72,7 @@ class _TimesListItemState extends State<TimesListItem> {
                   Container(
                     padding: const EdgeInsets.all(18),
                     width: double.infinity,
-                    color: Color.fromARGB(255, 0, 255, 200),
+                    color: Color.fromARGB(255, 2, 88, 88),
                     child: Text(
                       widget.timeList.timeRange,
                       maxLines: 2,

@@ -1,27 +1,26 @@
-import 'package:flutter/material.dart';
 import 'package:time_fit_mobile/models/categroy.dart';
 import 'package:time_fit_mobile/models/times_lists.dart';
 
 const availableCategories = [
   Category(
-    id: 'c1',
+    id: 1,
     title: "ダンベル (Danberu)",
-    color: Colors.purple,
+    color: "Colors.purple",
   ),
   Category(
-    id: 'c2',
+    id: 2,
     title: "バーベル (Bāberu) ",
-    color: Colors.red,
+    color: "Colors.red",
   ),
   Category(
-    id: 'c3',
+    id: 3,
     title: "ランニングマシン (Ranningu Mashin)",
-    color: Colors.orange,
+    color: "Colors.orange",
   ),
   Category(
-    id: 'c4',
+    id: 4,
     title: "エクササイズボール (Ekusasaizu Bōru)",
-    color: Colors.brown,
+    color: "Colors.brown",
   ),
 ];
 
