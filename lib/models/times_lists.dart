@@ -8,8 +8,8 @@ class TimesList {
     required this.isOccupied,
   });
 
-  final String id; // for mations
-  final List<String> categoryId;
+  final int id; // for mations
+  final int categoryId;
   late String sex;
   late String lockerId;
   final String timeRange;

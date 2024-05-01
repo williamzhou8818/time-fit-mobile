@@ -7,6 +7,7 @@ import 'package:time_fit_mobile/widgets/category_grid_item.dart';
 
 import '../data/dummy_data.dart';
 import '../models/categroy.dart';
+import '../models/times_lists.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -17,11 +18,14 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
 //Applying get request.
+  List<TimesList> timsLists = [];
 
-  void _selectCategory(BuildContext context, dynamic category) {
-    final filteredTimeLists = dummyTimeList
-        .where((timelist) => timelist.categoryId.contains('c1'))
-        .toList();
+  void _selectCategory(BuildContext context, dynamic category) async {
+    timsLists = await getAllTimesListsReq();
+    print('...******');
+    print(timsLists[0].categoryId);
+    final filteredTimeLists =
+        timsLists.where((timelist) => timelist.categoryId == 1).toList();
 
     // Navigator.push(context, route);
     print(category[0].title);
@@ -53,6 +57,25 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       users.add(user);
     }
     return users;
+  }
+
+  Future<List<TimesList>> getAllTimesListsReq() async {
+    String url = "http://192.168.56.1:5300/timslists";
+    final response = await http.get(Uri.parse(url));
+    var responseData = json.decode(response.body);
+
+//Creating a list to store input data;
+    for (var item in responseData) {
+      TimesList timsList = TimesList(
+          id: item["id"],
+          categoryId: item["category_id"],
+          sex: item["sex"],
+          lockerId: item["locker_id"],
+          timeRange: item["time_range"],
+          isOccupied: item["is_occupied"]);
+      timsLists.add(timsList);
+    }
+    return timsLists;
   }
 
   @override
